@@ -17,19 +17,19 @@ export const resolvers = {
     },
 //category: name should be same as typedef
     Product: {
-        category: (parent: any) => {  
-            const result = categories.find(category => category.id === parent.CategoryId);
+        category: ({CategoryId},args:any,context:any) => {  
+            const result = categories.find(category => category.id === CategoryId);
             return result;
         },
-        reviews: (parent: any) => {
-            const result = reviews.filter(review => review.productId === parent.id);
+        reviews: ({id},args:any,context:any) => {
+            const result = reviews.filter(review => review.productId === id);
             return result;
         }
     },
     //product: name should be same as typedef
     Category: {
-        product: (parent: any) => {
-            const result = products.filter(pd => pd.CategoryId === parent.id);
+        product: ({id},args:any,context:any) => {
+            const result = products.filter(pd => pd.CategoryId === id);
             return result;
         }
     },
